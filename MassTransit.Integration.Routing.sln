@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{88DD66
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransit.Integration.Routing.Configuration.Tests", "MassTransit.Integration.Routing.Configuration.Tests\MassTransit.Integration.Routing.Configuration.Tests.csproj", "{EADDDB26-B718-497D-BB6F-26B3F5379A59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ Global
 		{F338BC1A-5DE7-442C-BD1A-B954DD42B3FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F338BC1A-5DE7-442C-BD1A-B954DD42B3FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F338BC1A-5DE7-442C-BD1A-B954DD42B3FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EADDDB26-B718-497D-BB6F-26B3F5379A59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EADDDB26-B718-497D-BB6F-26B3F5379A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EADDDB26-B718-497D-BB6F-26B3F5379A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EADDDB26-B718-497D-BB6F-26B3F5379A59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
