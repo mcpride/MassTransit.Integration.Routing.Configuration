@@ -11,7 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using Magnum.Reflection;
@@ -36,7 +35,10 @@ namespace MassTransit.Integration.Routing.Configuration
             var section = (MessageRoutingSettings)ConfigurationManager.GetSection(string.Format(@"{0}/{1}", ConfigurationGroupName, _configurationKey));
             if (section == null) return;
             if (section.Routes == null) return;
-            var routes = (from MessageTypeCollection route in section.Routes let uri = new Uri(route.Uri) from messageType in route.Cast<MessageTypeElement>() let type = Type.GetType(messageType.Type, false, true) where type != null select new Tuple<Uri, Type>(uri, type)).ToList();
+            var routes = (from MessageTypeCollection route in section.Routes let uri = new Uri(route.Uri) 
+                          from messageType in route.Cast<MessageTypeElement>() let type = Type.GetType(messageType.Type, false, true) 
+                          where type != null 
+                          select new Tuple<Uri, Type>(uri, type)).ToList();
             foreach (var routingElement in routes)
             {
                 var route = _routingConfigurator.FastInvoke<RoutingConfigurator, RouteTo>(new[] { routingElement.Item2 }, "Route");

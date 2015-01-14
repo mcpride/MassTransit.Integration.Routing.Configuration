@@ -16,7 +16,7 @@ namespace MassTransit.Integration.Routing.Configuration.Tests.Specs
         public void Initialize_AppConfig_based_message_routing()
         {
             IServiceBus serviceBus = null;
-            Given("a msmq initialized service bus with 4 message routes from app.config",
+            Given("a msmq initialized service bus with 4 well known message routes and 1 unknown message from app.config",
                 sc =>
                 {
                     serviceBus = ServiceBusFactory.New(sbc =>
@@ -28,9 +28,13 @@ namespace MassTransit.Integration.Routing.Configuration.Tests.Specs
                         });
                         sbc.ReceiveFrom("msmq://localhost/AppConfigRoutingConfigTestQueue");
                         // ReSharper disable CSharpWarnings::CS0618
-                        sbc.ConfigureService<RoutingConfigurator>(BusServiceLayer.Session, routingConfigurator => 
-                            routingConfigurator.RouteByConfiguration("myMessageRoutings"));
+                        sbc.ConfigureService<RoutingConfigurator>(BusServiceLayer.Session, routingConfigurator =>
                         // ReSharper restore CSharpWarnings::CS0618
+                        {
+                            routingConfigurator.RouteByConfiguration("myMessageRoutings");
+                            routingConfigurator.RouteByConfiguration("otherMessageRoutings");
+                            routingConfigurator.RouteByConfiguration("unknownSection");
+                        });
                     });
                 })
             .Then("4 defined routes should be available in the diagnostic probe entry with key zz.mt.outbound_pipeline", sc =>
